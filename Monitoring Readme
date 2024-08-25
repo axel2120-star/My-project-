@@ -1,0 +1,98 @@
+This document provides guidance on how to create a Bash script for monitoring various system resources and presenting them in a dashboard format. The script should include sections for monitoring CPU usage, memory usage, network statistics, disk usage, system load, processes, and essential services. It should support real-time updates and command-line switches to view specific parts of the dashboard.
+
+
+Top 10 Most Used Applications: Use ps aux --sort=-%cpu,-%mem | head -n 11 to display the top 10 applications by CPU and memory usage.
+Network Monitoring: Utilize commands like netstat -an | grep ESTABLISHED | wc -l for concurrent connections, netstat -s | grep -i drop for packet drops, and ifconfig or sar -n DEV for MB in/out.
+Disk Usage: The df -h command will show disk usage. Use awk to highlight partitions using more than 80% of space.
+System Load: Use uptime to show the load average and mpstat for a breakdown of CPU usage.
+Memory Usage: free -m will provide total, used, and free memory, including swap usage.
+Process Monitoring: ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head -n 6 will show the top processes.
+Service Monitoring: systemctl is-active sshd or service sshd status can be used to check the status of services.
+
+
+Use a loop with a watch command or a while loop with sleep to refresh the data every few seconds.
+Combine all the gathered data into a single dashboard view using echo commands, and separate sections with clear headings.
+
+Header and Initialization
+
+Define variables and functions for each section.
+Set refresh interval and command-line options.
+Top 10 Most Used Applications
+
+Use ps to list processes by CPU and memory usage.
+Sort and display the top 10.
+Network Monitoring
+
+Use netstat or ss to get the number of connections.
+Use sar or ifstat to monitor packet drops and MB in/out.
+Disk Usage
+
+Use df to check disk usage by partition.
+Highlight partitions over 80% usage.
+System Load
+
+Use uptime or top to get the system load average.
+Use mpstat for CPU usage breakdown.
+Memory Usage
+
+Use free to display total, used, and free memory.
+Include swap memory usage.
+Process Monitoring
+
+Use ps to get the number of active processes.
+Sort and display top 5 processes by CPU and memory usage.
+Service Monitoring
+
+Use systemctl to check the status of essential services.
+Custom Dashboard
+
+Use command-line switches (e.g., -cpu, -memory, -network) to display specific sections.
+Main Loop
+
+Refresh data at regular intervals.
+Handle command-line arguments to display specific sections.
+
+# System Resource Monitoring Dashboard
+
+## Description
+This script monitors various system resources and presents them in a dashboard format. You can use command-line switches to view specific parts of the dashboard.
+
+## Usage
+
+### To view all sections:
+```bash
+./dashboard.sh
+
+./dashboard.sh -cpu          # Show top 10 applications by CPU and memory usage
+./dashboard.sh -memory       # Show memory usage
+./dashboard.sh -network      # Show network monitoring
+./dashboard.sh -disk         # Show disk usage
+./dashboard.sh -load         # Show system load
+./dashboard.sh -processes    # Show process monitoring
+./dashboard.sh -services     # Show service monitoring
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
