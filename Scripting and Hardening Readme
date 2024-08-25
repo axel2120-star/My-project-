@@ -1,0 +1,53 @@
+
+Linux Security Audit and Hardening Script
+Overview
+This Bash script automates the process of conducting security audits and applying hardening measures on CentOS 7 servers.
+The script is modular and reusable, allowing it to be easily deployed across multiple servers to ensure they meet stringent security standards.
+
+Features
+User and Group Audits: Lists all users and groups, identifies users with root privileges (UID 0), and checks for users without passwords or with weak passwords.
+File and Directory Permissions: Scans for files and directories with world-writable permissions, checks .ssh directory permissions, and reports files with SUID or SGID bits set.
+Service Audits: Lists running services, identifies unnecessary or unauthorized services, and ensures critical services are properly configured and running.
+Firewall and Network Security: Verifies firewall status, reports open ports, and checks for insecure network configurations.
+IP and Network Configuration Checks: Identifies public vs. private IP addresses and ensures sensitive services are not exposed on public IPs.
+Security Updates and Patching: Checks for available security updates and ensures the server is configured for regular security updates.
+Log Monitoring: Scans logs for suspicious entries that may indicate security breaches.
+Server Hardening Steps: Implements SSH key-based authentication, disables IPv6 if not required, secures the bootloader, configures firewall rules, and sets up automatic updates.
+Custom Security Checks: Supports custom security checks based on organizational policies.
+Reporting and Alerting: Generates a summary report of the audit and hardening process, with options for email alerts.
+
+Requirements
+CentOS 7 server
+Bash shell
+
+Installation
+Clone the repository to your server:
+
+git clone https://github.com/axel2120-star/axel.sh
+
+Run the script with the following command:
+
+./axel.sh
+
+Script Structure
+The script is organized into the following functions:
+
+user_and_group_audit: Conducts user and group audits.
+file_and_directory_permissions: Checks file and directory permissions.
+service_audit: Audits running services.
+firewall_and_network_security: Verifies firewall and network security.
+ip_network_configuration: Checks IP and network configurations.
+security_updates_and_patching: Ensures security updates are applied.
+log_monitoring: Monitors logs for suspicious activity.
+server_hardening_steps: Applies server hardening measures.
+custom_security_checks: Executes custom security checks defined in the configuration file.
+generate_report: Generates a summary report of the audit.
+Reporting
+After running the script, a summary report will be generated, highlighting any issues found and the actions taken to resolve them.
+
+Contributing
+If you would like to contribute to this project, please fork the repository and submit a pull request. Contributions are welcome for adding new features, improving existing functionality, and fixing bugs.
+
+
+Disclaimer
+This script is provided as-is and without warranty. Use it at your own risk. Always test the script in a development environment before deploying it in production.
